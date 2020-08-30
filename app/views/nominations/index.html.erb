@@ -1,25 +1,27 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Nominations</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @nominations.each do |nomination| %>
-      <tr>
-        <td><%= link_to 'Show', nomination %></td>
-        <td><%= link_to 'Edit', edit_nomination_path(nomination) %></td>
-        <td><%= link_to 'Destroy', nomination, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<h1>NOMINATIONS</h1>
+<% nominated = [] %>
+<% if @nominations %>
+  <% @nominations.each do |entry| %>
+    <% movie = entry["movie"].to_hash %>
+    <% nominated.push(movie) %>
+  <% end %>
+  <% nominated.each_with_index do |movie, i| %>
+    <% if nominated[i] != nil %>
+      <div>
+        <% if nominated[i]["Poster"] != "N/A" %>
+          <%= image_tag(nominated[i]["Poster"], style: 'height:25%;width:auto;') %>
+        <% end %>
+        <%= nominated[i]["Title"] %>
+        <%= nominated[i]["Year"] %>
+        <%= nominated[i]["Production"]%>
+        <%= nominated[i]["Awards"]%>
+        <%= button_to "Remove Nomination", nominations_clear_path, params: {format: nominated[i]["Title"]}, method: :delete %>
+      <div>
+      <p><%= nominated[i]["Plot"] %></p>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Nomination', new_nomination_path %>
+  <% end %>
+<% else %>
+  <h5>No Nominations Yet</h5>
+<% end %>
+<%= button_to "Clear All Nominations", nominations_clear_path, method: :delete %>
+<%= button_to "Search OMDB", search_index_path, method: :get %>

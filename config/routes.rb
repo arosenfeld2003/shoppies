@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   resources :nominations
   get 'search/index'
-  get 'nominated/nominate'
+
+  get 'nominations/index'
+  get 'nominations/nominate'
+  delete 'nominations/destroy'
+  delete 'nominations/clear'
+
   get 'welcome/index'
 
 

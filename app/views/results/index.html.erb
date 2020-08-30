@@ -5,7 +5,7 @@
         <%= image_tag(@movie_list[i]["Poster"], style: 'height:25%;width:auto;') %>
       <% end %>
       <%= @movie_list[i]["Title"] %>
-      <%= button_to('Nominate', nominated_nominate_path(@movie_list[i]["Title"]), :method => "get", required: true )%>
+      <%= button_to('Nominate', nominations_nominate_path(@movie_list[i]["Title"]), :method => "get", required: true )%>
     <div>
   <% end %>
 <% else %>
