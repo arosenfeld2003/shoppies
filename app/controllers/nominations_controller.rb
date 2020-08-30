@@ -51,7 +51,6 @@ class NominationsController < ApplicationController
   def nominate(params)
     query_service = ImdbService.new
     movie = query_service.get_movie_by_title(params["format"])
-
     if movie["Response"] == "False"
     else
       Nomination.create(movie: movie)

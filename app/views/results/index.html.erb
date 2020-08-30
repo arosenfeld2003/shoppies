@@ -5,7 +5,17 @@
         <%= image_tag(@movie_list[i]["Poster"], style: 'height:25%;width:auto;') %>
       <% end %>
       <%= @movie_list[i]["Title"] %>
-      <%= button_to('Nominate', nominations_nominate_path(@movie_list[i]["Title"]), :method => "get", required: true )%>
+      <% if @nominated.length > 0 %>
+        <% @nominated.each do |title| %>
+          <% if title == @movie_list[i]["Title"] %>
+            <h6>Already Nominated</h6>
+          <% else %>
+            <%= button_to('Nominate', nominations_nominate_path(@movie_list[i]["Title"]), :method => "get", required: true )%>
+          <% end %>
+        <% end %>
+      <% else %>
+        <%= button_to('Nominate', nominations_nominate_path(@movie_list[i]["Title"]), :method => "get", required: true )%>
+      <% end %>
     <div>
   <% end %>
 <% else %>

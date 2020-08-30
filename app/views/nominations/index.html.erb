@@ -1,6 +1,6 @@
 <h1>NOMINATIONS</h1>
 <% nominated = [] %>
-<% if @nominations %>
+<% if @nominations && @nominations.length > 0 %>
   <% @nominations.each do |entry| %>
     <% movie = entry["movie"].to_hash %>
     <% nominated.push(movie) %>
