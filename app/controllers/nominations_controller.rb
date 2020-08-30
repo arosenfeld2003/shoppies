@@ -49,13 +49,16 @@ class NominationsController < ApplicationController
   end
 
   def nominate(params)
-    query_service = ImdbService.new
-    movie = query_service.get_movie_by_title(params["format"])
-    if movie["Response"] == "False"
+    nominations = Nomination.all
+    if nominations.length > 4
     else
-      Nomination.create(movie: movie)
+      query_service = ImdbService.new
+      movie = query_service.get_movie_by_title(params["format"])
+      if movie["Response"] == "False"
+      else
+        Nomination.create(movie: movie)
+      end
     end
-
     @nominations = Nomination.all
     render "nominations/index"
   end

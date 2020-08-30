@@ -33,20 +33,32 @@
   </head>
   <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="../../welcome/index/">Home</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="../../search/index">Search</a>
-        </li>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-          <a class="nav-link" href="../../nominations/index">Nominated</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+            <a class="nav-link" href="../../welcome/index/">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="../../search/index">Search</a>
+          </li>
+            <li class="nav-item active">
+            <a class="nav-link" href="../../nominations/index">Nominated</a>
+          </li>
+          <% nominations = Nomination.all %>
+          <% if nominations.length == 5 %>
+            <% @nominations_full = true %>
+            <li>
+              <%= image_tag "full-capacity.jpg", class: "img-fluid full-capacity", id: "navbar-logo" %>
+            </li>
+            <h4 class="text-light">5 Movies Nominated - Nominations Closed!</h4>
+            <li class="nav-item active">
+              <a class="nav-link text-warning" href="../../nominations/index">View/Clear Nominations</a>
+            </li>
+          <% end %>
+          </li>
+        </ul>
+      </div>
+    </nav>
   </header>
   <body>
     <%= yield %>

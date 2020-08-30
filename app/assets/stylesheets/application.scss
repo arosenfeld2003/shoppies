@@ -18,7 +18,8 @@
  @import "bootstrap/scss/bootstrap.scss";
 
 body {
-  padding-top: 70px;
+  padding-top: 90px;
+  padding-bottom: 60px;
 }
 
 .sticky-footer-wrapper {
@@ -26,7 +27,7 @@ body {
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 60px;
+  height: -60px;
   line-height: 60px; /* Vertically center the text there */
   background-color: #f5f5f5;
 }
@@ -41,4 +42,9 @@ body {
 
 .trophy {
   background: url('award1.jpg');
+}
+
+.full-capacity {
+  max-width: 200px;
+  max-height: 60px;
 }

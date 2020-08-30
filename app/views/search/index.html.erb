@@ -3,19 +3,24 @@
   <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
       <form class="col-6">
-      <%= form_tag(search_index_path, :method => "get",
-            id: "search-form", name: "title", enforce_utf8: true) do %>
-        <div class="col-4"></div>
-        <div class="input-group form-group">
-          <%= text_field_tag :search, params[:search],
-            placeholder: "Search For Your Favorite Movie Titles...",
-              class: "form-control", name: "search", required: true %>
-          <div class="input-group-btn">
-            <button class="btn btn-secondary">
-              <span>Search OMDB</span>
-            </button>
+      <% nominations = Nomination.all %>
+      <% if nominations.length == 5 %>
+        <h4 class="text-primary">5 Movies Nominated - Nominations Closed!</h4>
+      <% else %>
+        <%= form_tag(search_index_path, :method => "get",
+              id: "search-form", name: "title", enforce_utf8: true) do %>
+          <div class="col-4"></div>
+          <div class="input-group form-group">
+            <%= text_field_tag :search, params[:search],
+              placeholder: "Search For Your Favorite Movie Titles...",
+                class: "form-control", name: "search", required: true %>
+            <div class="input-group-btn">
+              <button class="btn btn-secondary">
+                <span>Search OMDB</span>
+              </button>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   </div>

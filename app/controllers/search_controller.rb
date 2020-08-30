@@ -4,10 +4,12 @@ class SearchController < ApplicationController
       query_service = ImdbService.new
       @movie_list = query_service.get_movies_by_title_fragment(params[:search])["Search"]
       @nominated = []
-      @movie_list.each do |movie|
-        prior_nommination = Nomination.where("nominations.movie->>'imdbID' = ?", "#{movie["imdbID"]}")
-        if prior_nommination.length > 0
-          @nominated.push(movie["Title"])
+      if @movie_list != nil
+        @movie_list.each do |movie|
+          prior_nommination = Nomination.where("nominations.movie->>'imdbID' = ?", "#{movie["imdbID"]}")
+          if prior_nommination.length > 0
+            @nominated.push(movie["Title"])
+          end
         end
       end
       render "results/index"
