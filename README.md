@@ -1,6 +1,8 @@
 # README
 
-I created this web app for the Shopify Web Developer Intern Challenge (Winter - 2021).  Users can search the OMDB database for their favorite movies, and nominate up to five for a Shoppie award.
+### Check It Out Live! [SHOPPIES!](https://powerful-plateau-02315.herokuapp.com/welcome/index/)
+
+I created this web app for the Shopify Web Developer Intern Challenge.  Users can search the OMDB database for their favorite movies, and nominate up to five for a Shoppie award.
 
 The OMDB API allows for query by specific id/title, as well as a broader query by string matching each word in a title (returning the first ten results).  
 
