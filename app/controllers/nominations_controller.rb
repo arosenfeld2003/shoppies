@@ -60,7 +60,7 @@ class NominationsController < ApplicationController
       end
     end
     @nominations = Nomination.all
-    render "nominations/index"
+    redirect_to nominations_path
   end
 
   private

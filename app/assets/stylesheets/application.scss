@@ -18,7 +18,7 @@
  @import "bootstrap/scss/bootstrap.scss";
 
 body {
-  padding-top: 90px;
+  padding-top: 60px;
   padding-bottom: 90px;
 }
 
@@ -44,7 +44,28 @@ body {
   background: url('award1.jpg');
 }
 
+.bgmovies {
+  background-color: rgb(200, 181, 156);
+}
+
 .full-capacity {
   max-width: 200px;
   max-height: 60px;
+}
+
+.nominations{
+  background: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url('movies2.jpg');
+}
+
+.bg {
+  /* The image used */
+  background-image: url("curtains.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
