@@ -1,25 +1,28 @@
-
-<% if @movie_list %>
-  <% @movie_list.each_with_index do |hash, i| %>
-    <div>
-      <% if @movie_list[i]["Poster"] != "N/A" %>
-        <%= image_tag(@movie_list[i]["Poster"], style: 'height:25%;width:auto;') %>
-      <% end %>
-      <%= @movie_list[i]["Title"] %>
-      <% if @nominated.length > 0 %>
-        <% @nominated.each do |title| %>
-          <% if title == @movie_list[i]["Title"] %>
-            <h6>Already Nominated</h6>
-          <% else %>
-            <%= button_to('Nominate', nominations_nominate_path(@movie_list[i]["Title"]), :method => "get", required: true )%>
+<body class="bgimage">
+    <div class="text-center text-dark">
+    <% if @movie_list %>
+      <% @movie_list.each_with_index do |hash, i| %>
+        <div class="result">
+          <h3><%= @movie_list[i]["Title"] %></h3>
+          <% if @movie_list[i]["Poster"] != "N/A" %>
+            <%= image_tag(@movie_list[i]["Poster"], style: 'height:25%;width:auto;') %>
           <% end %>
-        <% end %>
-      <% else %>
-        <%= button_to('Nominate', nominations_nominate_path(@movie_list[i]["Title"]), :method => "get", required: true )%>
+          <% if @nominated.length > 0 %>
+            <% @nominated.each do |title| %>
+              <% if title == @movie_list[i]["Title"] %>
+                <h6>Already Nominated</h6>
+              <% else %>
+                <%= button_to('Nominate', nominations_nominate_path(@movie_list[i]["Title"]), class: "btn btn-dark btn-lg", :method => "get", required: true )%>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= button_to('Nominate', nominations_nominate_path(@movie_list[i]["Title"]), class: "btn btn-dark btn-lg", :method => "get", required: true )%>
+          <% end %>
+        <div>
       <% end %>
-    <div>
-  <% end %>
-<% else %>
-  <h3>No Matching Movies Found</h3>
-  <%= button_to "Search Again", search_index_path, method: :get %>
-<% end %>
+    <% else %>
+      <h3>No Matching Movies Found</h3>
+      <%= button_to "Search Again", search_index_path, method: :get %>
+    <% end %>
+  </div>
+</body>
