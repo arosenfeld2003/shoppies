@@ -2,7 +2,7 @@
   <body class="bg">
     <div class="text-center text-success">
       <%= button_to "Clear All Nominations", nominations_clear_path, class: "btn btn-dark btn-lg", method: :delete %>
-      <h1 class="display-3">NOMINATIONS</h1>
+      <h1 class="display-3 special">NOMINATIONS</h1>
 
       <% nominated = [] %>
       <% if @nominations && @nominations.length > 0 %>
@@ -16,7 +16,7 @@
               <% if nominated[i]["Poster"] != "N/A" %>
                 <%= image_tag(nominated[i]["Poster"], style: 'height:25%;width:auto;') %>
               <% end %>
-              <div class="card mx-auto w-50 text-white bg-dark mb-3">
+              <div class="card mx-auto w-50 text-white bg-dark mb-3 info">
                 <h5 class="card-header"><%= "#{nominated[i]["Title"]}" %></h5>
                 <div class="card-body">
                   <h6 class="card-title">
