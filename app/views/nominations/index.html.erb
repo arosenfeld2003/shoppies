@@ -1,33 +1,35 @@
 <main>
   <body class="bg">
-    <div class="text-center text-success">
-      <%= button_to "Clear All Nominations", nominations_clear_path, class: "btn btn-dark btn-lg", method: :delete %>
-      <h1 class="display-3">NOMINATIONS</h1>
-
-      <% nominated = [] %>
-      <% if @nominations && @nominations.length > 0 %>
-        <% @nominations.each do |entry| %>
-          <% movie = entry["movie"].to_hash %>
-          <% nominated.push(movie) %>
-        <% end %>
-        <% nominated.each_with_index do |movie, i| %>
-          <% if nominated[i] != nil %>
-            <div class="card" style="width: 18rem;">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Vestibulum at eros</li>
-              </ul>
-              <div class="card-body">
-                <p class="card-text"><%= nominated[i]["Plot"] %></p>
+    <div class="nom">
+      <div class="text-center text-success">
+        <%= button_to "Clear All Nominations", nominations_clear_path, class: "btn btn-dark btn-lg", method: :delete %>
+        <h1 class="display-3">NOMINATIONS</h1>
+        <% nominated = [] %>
+        <% if @nominations && @nominations.length > 0 %>
+          <% @nominations.each do |entry| %>
+            <% movie = entry["movie"].to_hash %>
+            <% nominated.push(movie) %>
+          <% end %>
+          <% nominated.each_with_index do |movie, i| %>
+            <% if nominated[i] != nil %>
+              <div class="card" style="width: 18rem;">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Cras justo odio</li>
+                  <li class="list-group-item">Dapibus ac facilisis in</li>
+                  <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+                <div class="card-body">
+                  <p class="card-text"><%= nominated[i]["Plot"] %></p>
+                </div>
               </div>
-            </div>
-          <%= button_to "Remove Nomination", nominations_clear_path, params: {format: nominated[i]["Title"]}, method: :delete %>
+            <% end %>
+            <%= button_to "Remove Nomination", nominations_clear_path, params: {format: nominated[i]["Title"]}, method: :delete %>
+          <% end %>
+        <% else %>
+          <h5>No Nominations Yet</h5>
         <% end %>
-      <% else %>
-        <h5>No Nominations Yet</h5>
-      <% end %>
-      <%= button_to "Search OMDB", search_index_path, class: "btn btn-light btn-lg", method: :get %>
+        <%= button_to "Search OMDB", search_index_path, class: "btn btn-light btn-lg", method: :get %>
+      </div>
     </div>
   </body>
 </main>
