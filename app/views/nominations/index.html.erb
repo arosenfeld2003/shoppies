@@ -1,35 +1,41 @@
 <main>
   <body class="bg">
-    <div class="nom">
-      <div class="text-center text-success">
-        <%= button_to "Clear All Nominations", nominations_clear_path, class: "btn btn-dark btn-lg", method: :delete %>
-        <h1 class="display-3">NOMINATIONS</h1>
-        <% nominated = [] %>
-        <% if @nominations && @nominations.length > 0 %>
-          <% @nominations.each do |entry| %>
-            <% movie = entry["movie"].to_hash %>
-            <% nominated.push(movie) %>
-          <% end %>
-          <% nominated.each_with_index do |movie, i| %>
+    <div class="text-center text-success">
+      <%= button_to "Clear All Nominations", nominations_clear_path, class: "btn btn-dark btn-lg", method: :delete %>
+      <h1 class="display-3">NOMINATIONS</h1>
+
+      <% nominated = [] %>
+      <% if @nominations && @nominations.length > 0 %>
+        <% @nominations.each do |entry| %>
+          <% movie = entry["movie"].to_hash %>
+          <% nominated.push(movie) %>
+        <% end %>
+        <% nominated.each_with_index do |movie, i| %>
+          <div class="nom">
             <% if nominated[i] != nil %>
-              <div class="card" style="width: 18rem;">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Cras justo odio</li>
-                  <li class="list-group-item">Dapibus ac facilisis in</li>
-                  <li class="list-group-item">Vestibulum at eros</li>
-                </ul>
+              <% if nominated[i]["Poster"] != "N/A" %>
+                <%= image_tag(nominated[i]["Poster"], style: 'height:25%;width:auto;') %>
+              <% end %>
+              <div class="card mx-auto w-50 text-white bg-dark mb-3">
+                <h5 class="card-header"><%= "#{nominated[i]["Title"]}" %></h5>
                 <div class="card-body">
+                  <h6 class="card-title">
+                    <strong><%= "Title: "%></strong><%= "#{nominated[i]["Title"]}  " %>
+                    <strong><%= "Year: "%></strong><%= "#{nominated[i]["Year"]}  " %>
+                    <strong><%= "Studio: "%></strong><%= "#{nominated[i]["Production"]}.  " %>
+                    <strong><%= "Awards: "%></strong><%= "#{nominated[i]["Awards"]}." %>
+                  </h6>
                   <p class="card-text"><%= nominated[i]["Plot"] %></p>
+                  <%= button_to "Remove Nomination", nominations_clear_path, params: {format: nominated[i]["Title"]}, method: :delete %>
                 </div>
               </div>
+            <% else %>
+              <h5>No Nominations Yet</h5>
             <% end %>
-            <%= button_to "Remove Nomination", nominations_clear_path, params: {format: nominated[i]["Title"]}, method: :delete %>
-          <% end %>
-        <% else %>
-          <h5>No Nominations Yet</h5>
+          </div>
         <% end %>
-        <%= button_to "Search OMDB", search_index_path, class: "btn btn-light btn-lg", method: :get %>
-      </div>
+      <% end %>
+      <%= button_to "Search OMDB", search_index_path, class: "btn btn-light btn-lg", method: :get %>
     </div>
   </body>
 </main>
