@@ -33,17 +33,17 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <nav class="navbar navbar-expand navbar-dark fixed-top bg-dark">
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="../../welcome/index/">Home</a>
+            <a class="nav-link max-width" href="../../welcome/index/">Home</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="../../search/index">Search</a>
+            <a class="nav-link max-width" href="../../search/index">Search</a>
           </li>
             <li class="nav-item active">
-            <a class="nav-link" href="../../nominations/index">Nominated</a>
+            <a class="nav-link max-width" href="../../nominations/index">Nominated</a>
           </li>
           <% nominations = Nomination.all %>
           <% if nominations.length == 5 %>
