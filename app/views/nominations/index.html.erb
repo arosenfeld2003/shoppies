@@ -12,22 +12,17 @@
         <% end %>
         <% nominated.each_with_index do |movie, i| %>
           <% if nominated[i] != nil %>
-            <div class="nom">
-              <p>
-                <strong><%= "Title: "%></strong><%= "#{nominated[i]["Title"]}  " %>
-                <strong><%= "Year: "%></strong><%= "#{nominated[i]["Year"]}  " %>
-                <strong><%= "Studio: "%></strong><%= "#{nominated[i]["Production"]}.  " %>
-                <strong><%= "Awards: "%></strong><%= "#{nominated[i]["Awards"]}." %>
-              </p>
-              <div>
-                <% if nominated[i]["Poster"] != "N/A" %>
-                  <%= image_tag(nominated[i]["Poster"], style: 'height:25%;width:auto;') %>
-                <% end %>
+            <div class="card" style="width: 18rem;">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+              </ul>
+              <div class="card-body">
+                <p class="card-text"><%= nominated[i]["Plot"] %></p>
               </div>
-              <%= button_to "Remove Nomination", nominations_clear_path, params: {format: nominated[i]["Title"]}, method: :delete %>
-              <p><%= nominated[i]["Plot"] %></p>
-            <div>
-          <% end %>
+            </div>
+          <%= button_to "Remove Nomination", nominations_clear_path, params: {format: nominated[i]["Title"]}, method: :delete %>
         <% end %>
       <% else %>
         <h5>No Nominations Yet</h5>
