@@ -1,6 +1,9 @@
 <body class="bgimage">
   <div class="text-center text-dark special">
-    <% if @movie_list %>
+    <% if @error_message %>
+      <h3><%= @error_message %></h3>
+      <%= button_to "Search Again", search_index_path, method: :get %>
+    <% elsif @movie_list %>
       <% @movie_list.each_with_index do |hash, i| %>
         <div class="result">
           <h3><%= @movie_list[i]["Title"] %></h3>
@@ -22,6 +25,7 @@
       <% end %>
     <% else %>
       <h3>No Matching Movies Found</h3>
+      <p>Return Value: "Response"=>"False", "Error"=>"Incorrect IMDb ID."</p>
       <%= button_to "Search Again", search_index_path, method: :get %>
     <% end %>
   </div>
